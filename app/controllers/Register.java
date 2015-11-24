@@ -18,7 +18,7 @@ public class Register extends Controller {
 
 	@Transactional
     public static Result show() {
-        return ok(login.render());
+        return ok(login.render(flash()));
     }
     
 	@Transactional
@@ -32,10 +32,10 @@ public class Register extends Controller {
 		
 		if(checkDBForUser(email)) {
         	flash("fail", "E-mail em uso");
-        	return badRequest(login.render());
+        	return badRequest(login.render(flash()));
         } else if(checkDBForName(nick)) {
         	flash("fail", "Login em uso");
-        	return badRequest(login.render());
+        	return badRequest(login.render(flash()));
         }
 		else {
 			User usuario = new User(email, pass, nick);

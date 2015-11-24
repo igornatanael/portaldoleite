@@ -13,7 +13,6 @@ import models.Disciplina;
 import models.MetaDica;
 import models.Tema;
 import models.dao.GenericDAOImpl;
-import play.Logger;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.db.jpa.Transactional;
@@ -29,7 +28,7 @@ public class Application extends Controller {
 	@Security.Authenticated(Secured.class)
     public static Result index() {
 		List<Disciplina> disciplinas = dao.findAllByClassName(Disciplina.class.getName());
-        return ok(views.html.index.render(disciplinas));
+        return ok(views.html.index.render(disciplinas, session()));
     }
 	
 	@Transactional
@@ -40,7 +39,7 @@ public class Application extends Controller {
 		if(tema == null) {
 			return erro();
 		}
-		return ok(views.html.tema.render(listaDisciplina, tema));
+		return ok(views.html.tema.render(listaDisciplina, tema, session()));
 	}
 	
 	@Transactional
@@ -51,14 +50,14 @@ public class Application extends Controller {
 		if(disciplina == null) {
 			return erro();
 		}
-		return ok(views.html.disciplina.render(listaDisciplina, disciplina, false));
+		return ok(views.html.disciplina.render(listaDisciplina, disciplina, false, session()));
 	}
 	
 	@Transactional
 	@Security.Authenticated(Secured.class)
 	public static Result disciplinaErro(Disciplina disciplina) {
 		List<Disciplina> listaDisciplina = dao.findAllByClassName(Disciplina.class.getName());
-		return ok(views.html.disciplina.render(listaDisciplina, disciplina, true));
+		return ok(views.html.disciplina.render(listaDisciplina, disciplina, true, session()));
 	}
 	
 	@Transactional
@@ -71,7 +70,7 @@ public class Application extends Controller {
 			return erro();
 		}
 		
-		return ok(views.html.metadica.render(listaDisciplina, disciplina, metadica));
+		return ok(views.html.metadica.render(listaDisciplina, disciplina, metadica, session()));
 	}
 	
 	@Transactional

@@ -25,7 +25,7 @@ public class Login extends Controller {
 		if (session().get("username") != null) {
 			return redirect(controllers.routes.Application.index());
 		}
-        return ok(login.render());
+        return ok(login.render(flash()));
     }
 	
 	@Transactional
@@ -43,7 +43,7 @@ public class Login extends Controller {
 		
         if (loginForm.hasErrors() || !validate(usuarioNoBD, pass)) {
         	flash("fail", "Login ou Senha Inválidos");
-        	return unauthorized(login.render());
+        	return unauthorized(login.render(flash()));
         } else {
         	User user = usuarioNoBD.get(0);
             session().clear();
