@@ -30,7 +30,7 @@ public class Global extends GlobalSettings {
 	}
 	
 	@Override
-	public void onStop(Application app){
+	public void onStop(Application app) {
 	    JPA.withTransaction(new play.libs.F.Callback0() {
 	    @Override
 	    public void invoke() throws Throwable {
@@ -43,7 +43,7 @@ public class Global extends GlobalSettings {
 	    }}); 
 	}
 	
-	private void criaDisciplinaTemas(){
+	private void criaDisciplinaTemas() {
 		Disciplina si1 = new Disciplina("Sistemas de Informação 1");
 		si1.addTema(new Tema("Análise x Design"));
 		si1.addTema(new Tema("Orientação a objetos"));
