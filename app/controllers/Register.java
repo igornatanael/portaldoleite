@@ -43,7 +43,7 @@ public class Register extends Controller {
 			
         	dao.persist(usuario);
             return redirect(
-                routes.Login.show()
+                controllers.routes.Login.show()
             );
         }
     }

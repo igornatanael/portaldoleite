@@ -23,7 +23,7 @@ public class Login extends Controller {
 	@Transactional
     public static Result show() {
 		if (session().get("username") != null) {
-			return redirect(routes.Application.index());
+			return redirect(controllers.routes.Application.index());
 		}
         return ok(login.render());
     }
@@ -51,7 +51,7 @@ public class Login extends Controller {
             session("login", user.getLogin());
             
             return redirect(
-                routes.Application.index()
+                controllers.routes.Application.index()
             );
         }
     }
