@@ -390,7 +390,7 @@ public class BCrypt {
 		StringBuffer rs = new StringBuffer();
 		int c1, c2;
 
-		if (len <= 0 || len > d.length){
+		if (len <= 0 || len > d.length) {
 			throw new IllegalArgumentException ("Invalid len");
 		}
 
@@ -460,7 +460,7 @@ public class BCrypt {
 			o = (byte)(c1 << 2);
 			o |= (c2 & 0x30) >> 4;
 			rs.append((char)o);
-			if (++olen >= maxolen || off >= slen){
+			if (++olen >= maxolen || off >= slen) {
 				break;
 			}
 			c3 = char64(s.charAt(off++));
@@ -470,7 +470,7 @@ public class BCrypt {
 			o = (byte)((c2 & 0x0f) << 4);
 			o |= (c3 & 0x3c) >> 2;
 			rs.append((char)o);
-			if (++olen >= maxolen || off >= slen){
+			if (++olen >= maxolen || off >= slen) {
 				break;
 			}
 			c4 = char64(s.charAt(off++));
@@ -481,7 +481,7 @@ public class BCrypt {
 		}
 
 		ret = new byte[olen];
-		for (off = 0; off < olen; off++){
+		for (off = 0; off < olen; off++) {
 			ret[off] = (byte)rs.charAt(off);
 		}
 		return ret;
@@ -555,7 +555,7 @@ public class BCrypt {
 		int lr[] = { 0, 0 };
 		int plen = P.length, slen = S.length;
 
-		for (i = 0; i < plen; i++){
+		for (i = 0; i < plen; i++) {
 			P[i] = P[i] ^ streamtoword(key, koffp);
 		}
 
@@ -622,11 +622,11 @@ public class BCrypt {
 		int clen = cdata.length;
 		byte ret[];
 
-		if (log_rounds < 4 || log_rounds > 30){
+		if (log_rounds < 4 || log_rounds > 30) {
 			throw new IllegalArgumentException ("Bad number of rounds");
 		}
 		rounds = 1 << log_rounds;
-		if (salt.length != BCRYPT_SALT_LEN){
+		if (salt.length != BCRYPT_SALT_LEN) {
 			throw new IllegalArgumentException ("Bad salt length");
 		}
 
@@ -670,7 +670,7 @@ public class BCrypt {
 		if (salt.charAt(0) != '$' || salt.charAt(1) != '2'){
 			throw new IllegalArgumentException ("Invalid salt version");
 		}
-		if (salt.charAt(2) == '$'){
+		if (salt.charAt(2) == '$') {
 			off = 3;
 		} else {
 			minor = salt.charAt(2);
@@ -681,7 +681,7 @@ public class BCrypt {
 		}
 
 		// Extract number of rounds
-		if (salt.charAt(off + 2) > '$'){
+		if (salt.charAt(off + 2) > '$') {
 			throw new IllegalArgumentException ("Missing salt rounds");
 		}
 		rounds = Integer.parseInt(salt.substring(off, off + 2));
@@ -700,11 +700,11 @@ public class BCrypt {
 		    (int[])bf_crypt_ciphertext.clone());
 
 		rs.append("$2");
-		if (minor >= 'a'){
+		if (minor >= 'a') {
 			rs.append(minor);
 		}
 		rs.append("$");
-		if (rounds < 10){
+		if (rounds < 10) {
 			rs.append("0");
 		}
 		if (rounds > 30) {
@@ -734,7 +734,7 @@ public class BCrypt {
 		random.nextBytes(rnd);
 
 		rs.append("$2a$");
-		if (log_rounds < 10){
+		if (log_rounds < 10) {
 			rs.append("0");
 		}
 		if (log_rounds > 30) {
@@ -785,11 +785,11 @@ public class BCrypt {
 		} catch (UnsupportedEncodingException uee) {
 			return false;
 		}
-		if (hashed_bytes.length != try_bytes.length){
+		if (hashed_bytes.length != try_bytes.length) {
 			return false;
 		}
 		byte ret = 0;
-		for (int i = 0; i < try_bytes.length; i++){
+		for (int i = 0; i < try_bytes.length; i++) {
 			ret |= hashed_bytes[i] ^ try_bytes[i];
 		}
 		return ret == 0;

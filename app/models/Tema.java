@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 
 @Entity(name="Tema")
 public class Tema {
+
 	@Id
 	@GeneratedValue
 	@Column
@@ -44,7 +45,8 @@ public class Tema {
 	@Column(name = "total_diff")
 	private int dificuldade;
 	
-	public Tema(){}
+	public Tema() {
+	}
 	
 	public Tema(String name) {
 		this.name = name;

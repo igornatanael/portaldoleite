@@ -4,11 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity(name="DicaAssunto")
-public class DicaAssunto extends Dica{
+public class DicaAssunto extends Dica {
+
 	@Column
 	private String assunto;
 	
-	public DicaAssunto(){
+	public DicaAssunto() {
 	}
 	
 	public DicaAssunto(String assunto) {

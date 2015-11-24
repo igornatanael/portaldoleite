@@ -19,7 +19,8 @@ import javax.persistence.Transient;
 
 @Table(name="dica")
 @Entity(name="Dica")
-public abstract class Dica implements Comparable<Dica>{
+public abstract class Dica implements Comparable<Dica> {
+
 	@Id
 	@GeneratedValue
 	@Column
@@ -53,7 +54,7 @@ public abstract class Dica implements Comparable<Dica>{
 	private int flag;
 	
 	@ElementCollection
-	private List<String> usuarioqueQueJaDenunciaram;
+	private List<String> usuarioQueJaDenunciaram;
 	
 	@Transient
 	private DicaDisciplina instanciaDisciplina;
@@ -165,11 +166,11 @@ public abstract class Dica implements Comparable<Dica>{
 	}
 	
 	public void addUsuarioFlag(String user) {
-		this.usuarioqueQueJaDenunciaram.add(user);
+		this.usuarioQueJaDenunciaram.add(user);
 	}
 	
 	public boolean wasFlaggedByUser(String user) {
-		return usuarioqueQueJaDenunciaram.contains(user);
+		return usuarioQueJaDenunciaram.contains(user);
 	}
 	
 	public void addMetaDica(MetaDica metadica) {

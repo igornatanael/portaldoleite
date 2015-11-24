@@ -22,7 +22,8 @@ import javax.persistence.Table;
 
 @Table(name="metadica")
 @Entity(name="MetaDica")
-public class MetaDica implements Comparable<MetaDica>{
+public class MetaDica implements Comparable<MetaDica> {
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -63,7 +64,8 @@ public class MetaDica implements Comparable<MetaDica>{
 	@Column
 	private int flag;
 	
-	public MetaDica(){}
+	public MetaDica() {
+	}
 	
 	public MetaDica(Disciplina disciplina, String user, String comment) {
 		this.disciplina = disciplina;
