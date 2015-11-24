@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Table(name="disciplina")
 @Entity(name="Disciplina")
 public class Disciplina {
+
 	@Id
 	@GeneratedValue
 	@Column

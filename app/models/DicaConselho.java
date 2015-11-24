@@ -4,7 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity(name="DicaConselho")
-public class DicaConselho extends Dica{
+public class DicaConselho extends Dica {
+
 	@Column
 	private String conselho;
 	

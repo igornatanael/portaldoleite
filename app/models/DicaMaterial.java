@@ -4,7 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity(name="DicaMaterial")
-public class DicaMaterial extends Dica{
+public class DicaMaterial extends Dica {
+
 	@Column
 	private String url;
 	
