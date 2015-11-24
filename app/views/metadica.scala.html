@@ -1,4 +1,4 @@
-@(disciplinas: List[Disciplina])(disciplinaAtual: Disciplina)(metadicaAtual: MetaDica)
+@(disciplinas: java.util.List[Disciplina])(disciplinaAtual: Disciplina)(metadicaAtual: MetaDica)(implicit session: play.mvc.Http.Session)
 
 <!DOCTYPE html>
 
@@ -39,12 +39,12 @@
 						<ul class="uk-nav uk-nav-side">
 							<li class="uk-divider"></li>
 							@for(disciplina <- disciplinas){
-            					@if(disciplina.getId() == disciplinaAtual.getId()){
+            					@if(disciplina.getId() == disciplinaAtual.getId()) {
             						<li class="uk-nav-header uk-active"><a href="/disciplina/@disciplina.getId()">@disciplina.getNome()</a></li>
             					} else {
             						<li class="uk-nav-header"><a href="/disciplina/@disciplina.getId()">@disciplina.getNome()</a></li>
             					}
-            					@for(tema <- disciplina.getTemas()){
+            					@for(tema <- disciplina.getTemas()) {
            							<li class="uk-parent"><a href="/tema/@tema.getId()">@tema.getName()</a></li>
 								}
 								<li class="uk-divider"></li>
@@ -62,21 +62,21 @@
             				<hr class="uk-article-divider-orange">
             			</div>
             			<div id="dicasList">
-	            			@for(dica <- metadicaAtual.getDicasAdicionadas()){
+	            			@for(dica <- metadicaAtual.getDicasAdicionadas()) {
 	            			<div class="uk-panel uk-panel-box dica" data-uk-scrollspy="{cls:'uk-animation-fade', repeat: true}">
-            					@if(!dica.wasFlaggedByUser(session.get("login"))){
+            					@if(!dica.wasFlaggedByUser(session.get("login").toString())) {
 	            					<form name="formDenunciar@dica.getId()" method="post" action="/denunciarDica/@dica.getId()"></form>
 	            					<a data-uk-tooltip title="Denunciar" 
 	            						class="uk-text-warning uk-icon-hover uk-icon-flag uk-panel-badge" href="javascript:denunciarDica(@dica.getId())"></a>
 	            				}
-            					@if(dica.getTipo().equals("DicaDisciplina")){
+            					@if(dica.getTipo().equals("DicaDisciplina")) {
 	            					<p>Disciplinas importantes:</p><p class="normal-font">@dica.getTexto()</p>
 	            					<p>Razão:</p><p class="normal-font">@dica.getInstanciaDisciplina.getRazao()</p>
 	            				}
-	            				@if(dica.getTipo().equals("DicaMaterial")){
+	            				@if(dica.getTipo().equals("DicaMaterial")) {
 	            					<p>Link para material útil:</p><a href="@dica.getTexto()">@dica.getTexto()</a>
 	            				}
-	            				@if(dica.getTipo().equals("DicaConselho")){
+	            				@if(dica.getTipo().equals("DicaConselho")) {
 	            					<p>Conselho:</p><p class="normal-font">@dica.getTexto()</p>
 	            				}
 	            				@if(dica.getTipo().equals("DicaAssunto")){
@@ -86,9 +86,9 @@
 	            			</div>
 	            			<hr class="uk-article-divider">
 	            			}
-	            			@for(metadica <- metadicaAtual.getMetaDicasAdicionadas()){
+	            			@for(metadica <- metadicaAtual.getMetaDicasAdicionadas()) {
 		            		<div class="uk-panel uk-panel-box dica" data-uk-scrollspy="{cls:'uk-animation-fade', repeat: true}">
-			            		@if(!metadica.wasFlaggedByUser(session.get("login"))){
+			            		@if(!metadica.wasFlaggedByUser(session.get("login").toString())) {
 		            				<form name="formDenunciarMeta@metadica.getId()" method="post" action="/denunciarMetaDica/@metadica.getId()"></form>
 		            				<a data-uk-tooltip title="Denunciar" 
 		            					class="uk-text-warning uk-icon-hover uk-icon-flag uk-panel-badge" href="javascript:denunciarMetaDica(@metadica.getId())"></a>

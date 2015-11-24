@@ -1,4 +1,4 @@
-@(disciplinas: List[Disciplina])(disciplinaAtual: Disciplina)(erro: Boolean)
+@(disciplinas: java.util.List[Disciplina])(disciplinaAtual: Disciplina)(erro: Boolean)(implicit session: play.mvc.Http.Session)
 
 <!DOCTYPE html>
 
@@ -72,12 +72,12 @@
             				<hr class="uk-article-divider-orange">
             			</div>
             			<div id="dicasList">
-            				@if(disciplinaAtual.getMetaDicas().isEmpty()){
+            				@if(disciplinaAtual.getMetaDicas().isEmpty()) {
 								<p>Esta disciplina ainda não possui nenhuma indicação.</p>
 							}
-	            			@for(metadica <- disciplinaAtual.getMetaDicas()){
+	            			@for(metadica <- disciplinaAtual.getMetaDicas()) {
 	            			<div class="uk-panel uk-panel-box dica" data-uk-scrollspy="{cls:'uk-animation-fade', repeat: true}">
-            					@if(!metadica.wasFlaggedByUser(session.get("login"))){
+            					@if(!metadica.wasFlaggedByUser(session.get("login").toString())) {
 	            					<form name="formDenunciarMeta@metadica.getId()" method="post" action="/denunciarMetaDica/@metadica.getId()"></form>
 	            					<a data-uk-tooltip title="Denunciar" 
 	            						class="uk-text-warning uk-icon-hover uk-icon-flag uk-panel-badge" href="javascript:denunciarMetaDica(@metadica.getId())"></a>
@@ -92,7 +92,7 @@
 		            				</div>
 		            				<div class="uk-width-small-1-3">
 		            					<span class="normal-font">Avalie:</span>
-		            					@if(!metadica.wasVotedByUser(session.get("login")) && !metadica.isUnvotable()){
+		            					@if(!metadica.wasVotedByUser(session.get("login").toString()) && !metadica.isUnvotable()) {
 		            						<form name="formUpVote@metadica.getId()" method="post" action="/upVoteMetaDica/@metadica.getId()"></form>
 			            					<a class="uk-icon-hover uk-icon-thumbs-up uk-text-success" href="javascript:DoPost(@metadica.getId())"></a>
 			            					<a class="uk-icon-hover uk-icon-thumbs-down uk-text-success" 
@@ -116,10 +116,10 @@
 										<a class="uk-modal-close uk-close"></a>
 										<div class="uk-modal-header" style="background-color:#5f5f5f"><h2>Discordâncias</h2></div>
 										<div class="uk-overflow-container">
-										@if(metadica.getUsersCommentaries().entrySet().isEmpty()){
+										@if(metadica.getUsersCommentaries().entrySet().isEmpty()) {
 											<p>Nenhuma discordância adicionada.</p>
 										}
-										@for(discordancia <- metadica.getUsersCommentaries().entrySet()){
+										@for(discordancia <- metadica.getUsersCommentaries().entrySet()) {
 		            						<div class="uk-panel uk-panel-box dica">
 				            					<p class="normal-font">@discordancia.getValue()</p>
 					            				<p class="uk-article-meta uk-text-right">por @discordancia.getKey()</p>
@@ -139,11 +139,12 @@
 												<p>Por que você discorda desta dica?</p>
 												<textarea cols="70" rows="5" name="discordancia" ng-model="discordancia"
 													class="form-control" required>Discordância.</textarea>
-										</div>
+
 												<div class="uk-modal-footer uk-text-right" style="background-color:#5f5f5f">
 													<button class="uk-button uk-button-primary" type="submit" ng-disabled="!discordancia">Adicionar</button>
 												</div>
 											</form>
+										</div>
 									</div>
 								</div>
 								<!-- ---------------- FIM MODAL ---------------- -->
@@ -165,28 +166,28 @@
 			       		<hr class="uk-article-divider-orange">
 			       	</div>
 					<div class="uk-overflow-container">
-					@for(tema <- disciplinaAtual.getTemas()){
-						@for(dica <- tema.getDicas()){
+					@for(tema <- disciplinaAtual.getTemas()) {
+						@for(dica <- tema.getDicas()) {
 							<div class="uk-panel uk-panel-box dica">
 								<input class="uk-form-control uk-panel-badge" type="checkbox" name="dica" value="@dica.getId()">
-								@if(dica.getTipo().equals("DicaDisciplina")){
+								@if(dica.getTipo().equals("DicaDisciplina")) {
 	            					<p>Disciplinas importantes:</p><p class="normal-font">@dica.getTexto()</p>
 	            					<p>Razão:</p><p class="normal-font">@dica.getInstanciaDisciplina.getRazao()</p>
 	            				}
-	            				@if(dica.getTipo().equals("DicaMaterial")){
+	            				@if(dica.getTipo().equals("DicaMaterial")) {
 	            					<p>Link para material útil:</p><a href="@dica.getTexto()">@dica.getTexto()</a>
 	            				}
-	            				@if(dica.getTipo().equals("DicaConselho")){
+	            				@if(dica.getTipo().equals("DicaConselho")) {
 	            					<p>Conselho:</p><p class="normal-font">@dica.getTexto()</p>
 	            				}
-	            				@if(dica.getTipo().equals("DicaAssunto")){
+	            				@if(dica.getTipo().equals("DicaAssunto")) {
 	            					<p>Assuntos importantes:</p><p class="normal-font">@dica.getTexto()</p>
 	            				}
 		       				</div>
 		       				<hr class="uk-article-divider">
 	       				}
 		         	}
-       				@for(metadica <- disciplinaAtual.getMetaDicas()){
+       				@for(metadica <- disciplinaAtual.getMetaDicas()) {
        					<div class="uk-panel uk-panel-box dica" style="background-color: #34363f;">
 							<input class="uk-form-control uk-panel-badge" type="checkbox" name="metadica" value="@metadica.getId()">
 							<p>Comentário: </p><p class="normal-font">@metadica.getComment()</p>
