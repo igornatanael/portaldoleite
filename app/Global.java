@@ -55,22 +55,20 @@ public class Global extends GlobalSettings {
 	}
 
 	private void criarUsuarios() {
-		User users[] = {
-				new User("demo", "demo@example.com", "admin", "demo"),
-				new User("admin", "admin@example.com", "admin", "admin"),
-				new User("stack", "stack@example.com", "x37lw91", "stack"),
-				new User("diego", "diegoado@gmail.com", "claymore", "diego"),
+		List<User> users = new ArrayList<>();
 
-				new User("fulano", "fulano@example.com", "fulano", "fulano"),
-				new User("default", "default@example.com", "default", "default"),
+		users.add(new User("demo", "demo@example.com", "admin", "demo"));
+		users.add(new User("admin", "admin@example.com", "admin", "admin"));
+		users.add(new User("stack", "stack@example.com", "x37lw91", "stack"));
+		users.add(new User("diego", "diegoado@gmail.com", "claymore", "diego"));
+		users.add(new User("fulano", "fulano@example.com", "fulano", "fulano"));
+		users.add(new User("default", "default@example.com", "default", "default"));
+		users.add(new User("cicrano", "cicrano@example.com", "cicrano", "cicrano"));
+		users.add(new User("igor", "igor.ataide@ccc.ufcg.edu.br", "ataide", "igor"));
+		users.add(new User("nazareno", "nazareno@example.com", "default", "nazareno"));
+		users.add(new User("beltrano", "beltrano@example.com", "beltrano", "beltrano"));
 
-				new User("cicrano", "cicrano@example.com", "cicrano", "cicrano"),
-				new User("igor", "igor.ataide@ccc.ufcg.edu.br", "ataide", "igor"),
-				new User("nazareno", "nazareno@example.com", "default", "nazareno"),
-				new User("beltrano", "beltrano@example.com", "beltrano", "beltrano"),
-		};
-
-		dao.persist(users);
+		users.stream().forEach(u -> dao.persist(u));
 		dao.flush();
 	}
 	
@@ -102,14 +100,14 @@ public class Global extends GlobalSettings {
 		si.addTema(new Tema("Minitestes"));
 		si.addTema(new Tema("Projeto"));
 
-		criaDicasTema(si.getTemas());
+		criarDicasTema(si.getTemas());
 		avaliarDicasTemas(si.getTemas());
 
 		dao.persist(db, es, si);
 		dao.flush();
 	}
 
-	private void criaDicasTema(List<Tema> temas) {
+	private void criarDicasTema(List<Tema> temas) {
 		String urls[] = {
 				"https://en.wikipedia.org/wiki/Object-oriented_programming",
 				"http://www.wthreex.com/rup/process/workflow/ana_desi/co_swarch.htm",

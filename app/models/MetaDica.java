@@ -148,10 +148,10 @@ public class MetaDica implements Comparable<MetaDica> {
 
 	@Override
 	public int compareTo(MetaDica otherMetaDica) {
-		if (this.getConcordancias()>otherMetaDica.getConcordancias()) {
-			return -1;
-		} else if (this.getConcordancias()<otherMetaDica.getConcordancias()) {
+		if (this.getConcordancias() > otherMetaDica.getConcordancias()) {
 			return 1;
+		} else if (this.getConcordancias() < otherMetaDica.getConcordancias()) {
+			return -1;
 		} else {
 			return 0;
 		}

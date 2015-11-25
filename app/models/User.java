@@ -1,12 +1,9 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import models.strategy.LinhaDoTempo;
+import models.strategy.PesquisarPorTempo;
 import org.mindrot.jbcrypt.BCrypt;
 
 @Table(name="user_table")
@@ -20,20 +17,27 @@ public class User {
 
 	@Column
 	private String email;
+
 	@Column
 	private String pass;
+
 	@Column
 	private String nome;
+
 	@Column
 	private String login;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private LinhaDoTempo linhaDoTempo;
 	
 	public User() {
 	}
 	
 	public User(String email, String pass, String login) {
-		this.email = email;		
-		this.pass = BCrypt.hashpw(pass, BCrypt.gensalt());
+		this.email = email;
 		this.login = login;
+		this.pass = BCrypt.hashpw(pass, BCrypt.gensalt());
+		this.linhaDoTempo = new LinhaDoTempo(new PesquisarPorTempo());
 	}
 
 	public User(String nome, String email, String pass, String login) {
@@ -71,6 +75,14 @@ public class User {
 	
 	public void setLogin(String login) {
 		this.login = login;
+	}
+
+	public LinhaDoTempo getLinhaDoTempo() {
+		return linhaDoTempo;
+	}
+
+	public void setLinhaDoTempo(LinhaDoTempo linhaDoTempo) {
+		this.linhaDoTempo = linhaDoTempo;
 	}
 	
 	@Override
