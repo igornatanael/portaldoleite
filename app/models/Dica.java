@@ -1,22 +1,8 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapKeyColumn;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Table(name="dica")
 @Entity(name="Dica")
@@ -32,6 +18,10 @@ public abstract class Dica implements Comparable<Dica> {
 	
 	@Column
 	private String username;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="time_stamp", nullable=false)
+	private Calendar dateCreate;
 	
 	@ElementCollection
     @MapKeyColumn(name="user_dica")
@@ -163,6 +153,15 @@ public abstract class Dica implements Comparable<Dica> {
 		if (this.getTipo().equals("DicaDisciplina")) {
 			this.instanciaDisciplina = (DicaDisciplina) this;
 		}		
+	}
+
+	public Calendar getDateCreate() {
+		return dateCreate;
+	}
+
+	@PrePersist
+	protected void onCreate() {
+		dateCreate = Calendar.getInstance();
 	}
 	
 	public DicaDisciplina getInstanciaDisciplina() {

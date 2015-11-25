@@ -15,7 +15,7 @@ public class User {
 	@Column
 	private Long id;
 
-	@Column
+	@Column(unique=true, nullable=false)
 	private String email;
 
 	@Column
@@ -24,7 +24,7 @@ public class User {
 	@Column
 	private String nome;
 
-	@Column
+	@Column(unique=true, nullable=false)
 	private String login;
 
 	@OneToOne(cascade = CascadeType.ALL)
