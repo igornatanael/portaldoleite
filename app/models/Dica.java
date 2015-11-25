@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +60,8 @@ public abstract class Dica implements Comparable<Dica> {
 	@Transient
 	private DicaDisciplina instanciaDisciplina;
 	
-	public Dica(){}
+	public Dica(){
+	}
 
 	public Tema getTema() {
 		return tema;
@@ -67,7 +69,9 @@ public abstract class Dica implements Comparable<Dica> {
 
 	public void setTema(Tema tema) {
 		this.tema = tema;
-		this.usersCommentaries = new HashMap<String,String>();
+		this.usersCommentaries = new HashMap<>();
+		this.usuariosQueJaVotaram = new ArrayList<>();
+		this.usuarioQueJaDenunciaram = new ArrayList<>();
 	}
 
 	public long getId() {
@@ -132,7 +136,7 @@ public abstract class Dica implements Comparable<Dica> {
 		this.username = user;
 	}
 	
-	public void addUsuarioQueVotou(String user){
+	public void addUsuarioQueVotou(String user) {
 		usuariosQueJaVotaram.add(user);
 	}
 	

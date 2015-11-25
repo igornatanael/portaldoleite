@@ -1,10 +1,6 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
@@ -20,7 +16,7 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 
 @Entity(name="Tema")
-public class Tema {
+public class Tema implements Comparable<Tema> {
 
 	@Id
 	@GeneratedValue
@@ -148,5 +144,16 @@ public class Tema {
 		}
 		
 		return String.format("%.2f", votesCount/totalVotes);
+	}
+
+	@Override
+	public int compareTo(Tema other) {
+		if(this.getName().length() > other.getName().length()) {
+			return 1;
+		} else if(this.getName().length() < other.getName().length()) {
+			return -1;
+		} else {
+			return this.getName().compareTo(other.getName());
+		}
 	}
 }

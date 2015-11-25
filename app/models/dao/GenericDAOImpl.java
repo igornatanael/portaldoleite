@@ -17,6 +17,12 @@ public class GenericDAOImpl implements GenericDAO {
 		return true;
 	}
 
+	public void persist(Object... objects) {
+		for(Object e : objects) {
+			persist(e);
+		}
+	}
+
 	@Override
 	public void flush() {
 		JPA.em().flush();

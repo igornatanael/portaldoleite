@@ -56,6 +56,7 @@ public class Disciplina {
 	}
 
 	public List<Tema> getTemas() {
+		Collections.sort(temas);
 		return temas;
 	}
 

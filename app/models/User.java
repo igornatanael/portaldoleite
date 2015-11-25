@@ -36,6 +36,11 @@ public class User {
 		this.login = login;
 	}
 
+	public User(String nome, String email, String pass, String login) {
+		this(email, pass, login);
+		this.nome = nome;
+	}
+
 	public String getEmail() {
 		return email;
 	}
