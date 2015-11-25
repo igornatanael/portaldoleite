@@ -28,7 +28,7 @@ public class Application extends Controller {
 	@Security.Authenticated(Secured.class)
     public static Result index() {
 		List<Disciplina> disciplinas = dao.findAllByClassName(Disciplina.class.getName());
-        return ok(views.html.index.render(disciplinas, session()));
+        return ok(views.html.index.render(disciplinas));
     }
 	
 	@Transactional
@@ -39,7 +39,7 @@ public class Application extends Controller {
 		if(tema == null) {
 			return erro();
 		}
-		return ok(views.html.tema.render(listaDisciplina, tema, session()));
+		return ok(views.html.tema.render(listaDisciplina, tema));
 	}
 	
 	@Transactional
@@ -50,14 +50,14 @@ public class Application extends Controller {
 		if(disciplina == null) {
 			return erro();
 		}
-		return ok(views.html.disciplina.render(listaDisciplina, disciplina, false, session()));
+		return ok(views.html.disciplina.render(listaDisciplina, disciplina, false));
 	}
 	
 	@Transactional
 	@Security.Authenticated(Secured.class)
 	public static Result disciplinaErro(Disciplina disciplina) {
 		List<Disciplina> listaDisciplina = dao.findAllByClassName(Disciplina.class.getName());
-		return ok(views.html.disciplina.render(listaDisciplina, disciplina, true, session()));
+		return ok(views.html.disciplina.render(listaDisciplina, disciplina, true));
 	}
 	
 	@Transactional
@@ -70,7 +70,7 @@ public class Application extends Controller {
 			return erro();
 		}
 		
-		return ok(views.html.metadica.render(listaDisciplina, disciplina, metadica, session()));
+		return ok(views.html.metadica.render(listaDisciplina, disciplina, metadica));
 	}
 	
 	@Transactional
