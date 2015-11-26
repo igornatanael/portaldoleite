@@ -49,7 +49,12 @@ public class Tema implements Comparable<Tema> {
 		this.dicas = new ArrayList<Dica>();
 		this.usersDifficulty = new HashMap<String, String>();
 	}
-	
+
+	public Tema(String name, Disciplina disciplina) {
+		this(name);
+		this.disciplina = disciplina;
+	}
+
 	public void incrementarDificuldade(String userLogin, int dificuldade) {
 		if (usersDifficulty.containsKey(userLogin)) {
 			String previousDiff = usersDifficulty.get(userLogin);

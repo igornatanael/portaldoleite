@@ -1,8 +1,11 @@
 package unidade;
 
 import models.*;
+import models.strategy.PesquisarPorTempo;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 public class LinhaDoTempoTest {
 
@@ -26,6 +29,7 @@ public class LinhaDoTempoTest {
 
     @Test
     public void deveEstarOrdenadoPorTempo() {
-
+        user.getLinhaDoTempo().setPequisador(new PesquisarPorTempo());
+        List<Dica> dicas = user.getLinhaDoTempo().getDicas();
     }
 }

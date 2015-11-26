@@ -77,28 +77,28 @@ public class Global extends GlobalSettings {
 		Disciplina es = new Disciplina("Engenharia de Software I");
 		Disciplina si = new Disciplina("Sistemas de Informação I");
 
-		db.addTema(new Tema("SQL"));
-		db.addTema(new Tema("JDBC"));
-		db.addTema(new Tema("Modelo Relacional"));
+		db.addTema(new Tema("SQL", db));
+		db.addTema(new Tema("JDBC", db));
+		db.addTema(new Tema("Modelo Relacional", db));
 
-		es.addTema(new Tema("Provas"));
-		es.addTema(new Tema("Android"));
-		es.addTema(new Tema("Metodos Formais"));
-		es.addTema(new Tema("Estudo dos Artigos"));
-		es.addTema(new Tema("Verificação e Validação"));
+		es.addTema(new Tema("Provas", es));
+		es.addTema(new Tema("Android", es));
+		es.addTema(new Tema("Metodos Formais", es));
+		es.addTema(new Tema("Estudo dos Artigos", es));
+		es.addTema(new Tema("Verificação e Validação", es));
 
-		si.addTema(new Tema("Análise x Design"));
-		si.addTema(new Tema("Programação Orientação à Objetos"));
-		si.addTema(new Tema("GRASP"));
-		si.addTema(new Tema("GoF"));
-		si.addTema(new Tema("Arquitetura de Software"));
-		si.addTema(new Tema("Play Framework"));
-		si.addTema(new Tema("JavaScript"));
-		si.addTema(new Tema("HTML / CSS / Bootstrap"));
-		si.addTema(new Tema("Heroku"));
-		si.addTema(new Tema("LABs"));
-		si.addTema(new Tema("Minitestes"));
-		si.addTema(new Tema("Projeto"));
+		si.addTema(new Tema("Análise x Design", si));
+		si.addTema(new Tema("Programação Orientação à Objetos", si));
+		si.addTema(new Tema("GRASP", si));
+		si.addTema(new Tema("GoF", si));
+		si.addTema(new Tema("Arquitetura de Software", si));
+		si.addTema(new Tema("Play Framework", si));
+		si.addTema(new Tema("JavaScript", si));
+		si.addTema(new Tema("HTML / CSS / Bootstrap", si));
+		si.addTema(new Tema("Heroku", si));
+		si.addTema(new Tema("LABs", si));
+		si.addTema(new Tema("Minitestes", si));
+		si.addTema(new Tema("Projeto", si));
 
 		criarDicasTema(si);
 		avaliarDicasTemas(si.getTemas());
@@ -125,7 +125,6 @@ public class Global extends GlobalSettings {
 
 				tema.addDica(dica);
 				dica.setTema(tema);
-				dica.getTema().setDisciplina(disciplina);
 				dica.setUser("admin");
 			} else {
 				break;
