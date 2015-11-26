@@ -20,7 +20,7 @@ public abstract class Dica implements Comparable<Dica> {
 	private String username;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="time_stamp", nullable=false)
+	@Column(name="time_stamp", nullable=false, updatable=false)
 	private Calendar dateCreate;
 	
 	@ElementCollection

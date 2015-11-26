@@ -1,5 +1,6 @@
 package models.strategy;
 
+import com.google.common.collect.Lists;
 import models.Dica;
 
 import javax.persistence.Entity;
@@ -19,6 +20,6 @@ public class PesquisarPorTempo extends PesquisadorComposto {
             }
         });
 
-        return dicas;
+        return Lists.reverse(dicas);
     }
 }
