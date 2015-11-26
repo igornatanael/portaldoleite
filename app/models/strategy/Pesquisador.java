@@ -6,11 +6,13 @@ import java.util.List;
 
 public interface Pesquisador {
 
-    List<Dica> getDicas(List<Dica> dicas);
-
     boolean hasNext();
 
     Pesquisador getNext();
 
     void setNext(Pesquisador next);
+
+    void addNext(Pesquisador next);
+
+    List<Dica> getDicas(List<Dica> dicas);
 }

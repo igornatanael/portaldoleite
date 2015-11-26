@@ -33,23 +33,29 @@ public class Application extends Controller {
 		User user = usuarioNoBD.get(0);
 		LinhaDoTempo linhaDoTempo = user.getLinhaDoTempo();
 
-		for(String key: formMap.keySet()) {
-			String tipo = formMap.get(key);
+		if(formMap.isEmpty()) {
+			linhaDoTempo.setPequisador(new PesquisarPorTempo());
+		} else {
+			linhaDoTempo.setPequisador(null);
+			for(String key: formMap.keySet()) {
+				String tipo = formMap.get(key);
 
-			switch(tipo) {
-				case "data":
-					linhaDoTempo.getPequisador().addNext(new PesquisarPorTempo());
-					break;
-				case "concordancia":
-					linhaDoTempo.getPequisador().addNext(new PesquisarPorConcordancia());
-					break;
-				case "descordancia":
-					linhaDoTempo.getPequisador().addNext(new PesquisarPorDescordancia());
-					break;
-				default:
-					break;
+				switch (tipo) {
+					case "data":
+						linhaDoTempo.getPequisador().addNext(new PesquisarPorTempo());
+						break;
+					case "concordancia":
+						linhaDoTempo.getPequisador().addNext(new PesquisarPorConcordancia());
+						break;
+					case "descordancia":
+						linhaDoTempo.getPequisador().addNext(new PesquisarPorDescordancia());
+						break;
+					default:
+						break;
+				}
 			}
 		}
+
 		List<Dica> dicas = linhaDoTempo.getDicas();
 		List<Disciplina> disciplinas = dao.findAllByClassName(Disciplina.class.getName());
 		return ok(views.html.index.render(disciplinas, dicas));

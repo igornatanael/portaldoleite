@@ -15,10 +15,7 @@ public class PesquisarPorTempo extends PesquisadorComposto {
         Collections.sort(dicas, new Comparator<Dica>() {
             @Override
             public int compare(Dica d1, Dica d2) {
-                if(d1.getId() > d2.getId()) {
-                    return 1;
-                }
-                return -1;
+                return d1.getDateCreate().compareTo(d2.getDateCreate());
             }
         });
 

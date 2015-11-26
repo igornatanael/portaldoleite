@@ -36,8 +36,8 @@ public class User {
 	public User(String email, String pass, String login) {
 		this.email = email;
 		this.login = login;
+		this.linhaDoTempo = new LinhaDoTempo();
 		this.pass = BCrypt.hashpw(pass, BCrypt.gensalt());
-		this.linhaDoTempo = new LinhaDoTempo(new PesquisarPorTempo());
 	}
 
 	public User(String nome, String email, String pass, String login) {

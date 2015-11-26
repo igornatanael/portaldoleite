@@ -57,6 +57,7 @@ public abstract class PesquisadorComposto implements Pesquisador {
 
     abstract public List<Dica> pesquisar(List<Dica> dicas);
 
+    @Override
     public void addNext(Pesquisador next) {
         Pesquisador actual = this;
 

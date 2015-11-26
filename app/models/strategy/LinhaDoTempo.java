@@ -29,7 +29,6 @@ public class LinhaDoTempo {
 
     public LinhaDoTempo(Pesquisador pequisador) {
         this.pequisador = pequisador;
-        dicas = dao.findAllByClassName(Dica.class.getName());
     }
 
     public long getId() {
@@ -49,6 +48,7 @@ public class LinhaDoTempo {
     }
 
     public List<Dica> getDicas() {
+        dicas = dao.findAllByClassName(Dica.class.getName());
         return pequisador.getDicas(dicas);
     }
 }
