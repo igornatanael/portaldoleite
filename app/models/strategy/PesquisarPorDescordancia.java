@@ -16,9 +16,9 @@ public class PesquisarPorDescordancia extends PesquisadorComposto {
             @Override
             public int compare(Dica d1, Dica d2) {
                 if(d1.getDiscordancias() > d2.getDiscordancias()) {
-                    return 1;
-                } else if(d1.getDiscordancias() < d2.getDiscordancias()) {
                     return -1;
+                } else if(d1.getDiscordancias() < d2.getDiscordancias()) {
+                    return 1;
                 } else {
                     return 0;
                 }

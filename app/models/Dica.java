@@ -141,9 +141,9 @@ public abstract class Dica implements Comparable<Dica> {
 	@Override
 	public int compareTo(Dica otherDica) {
 		if (this.getConcordancias() > otherDica.getConcordancias()) {
-			return 1;
-		} else if (this.getConcordancias() < otherDica.getConcordancias()) {
 			return -1;
+		} else if (this.getConcordancias() < otherDica.getConcordancias()) {
+			return 1;
 		} else {
 			return 0;
 		}
