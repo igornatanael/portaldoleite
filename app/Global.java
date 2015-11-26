@@ -100,14 +100,14 @@ public class Global extends GlobalSettings {
 		si.addTema(new Tema("Minitestes"));
 		si.addTema(new Tema("Projeto"));
 
-		criarDicasTema(si.getTemas());
+		criarDicasTema(si);
 		avaliarDicasTemas(si.getTemas());
 
 		dao.persist(db, es, si);
 		dao.flush();
 	}
 
-	private void criarDicasTema(List<Tema> temas) {
+	private void criarDicasTema(Disciplina disciplina) {
 		String urls[] = {
 				"https://en.wikipedia.org/wiki/Object-oriented_programming",
 				"http://www.wthreex.com/rup/process/workflow/ana_desi/co_swarch.htm",
@@ -115,7 +115,7 @@ public class Global extends GlobalSettings {
 				"http://www.wthreex.com/rup/process/workflow/ana_desi/cos_and.htm",
 				"https://www.playframework.com/documentation/2.4.x/Home"
 		};
-
+		List<Tema> temas = disciplina.getTemas();
 		ListIterator<Tema> it = temas.listIterator(temas.size());
 
 		for(String url : urls) {
@@ -125,6 +125,7 @@ public class Global extends GlobalSettings {
 
 				tema.addDica(dica);
 				dica.setTema(tema);
+				dica.getTema().setDisciplina(disciplina);
 				dica.setUser("admin");
 			} else {
 				break;
