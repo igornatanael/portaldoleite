@@ -42,13 +42,25 @@ public class Application extends Controller {
 
 				switch (tipo) {
 					case "data":
-						linhaDoTempo.getPequisador().addNext(new PesquisarPorTempo());
+						if(linhaDoTempo.getPequisador() != null) {
+							linhaDoTempo.getPequisador().addNext(new PesquisarPorTempo());
+						} else {
+							linhaDoTempo.setPequisador(new PesquisarPorTempo());
+						}
 						break;
 					case "concordancia":
-						linhaDoTempo.getPequisador().addNext(new PesquisarPorConcordancia());
+						if(linhaDoTempo.getPequisador() != null) {
+							linhaDoTempo.getPequisador().addNext(new PesquisarPorConcordancia());
+						} else {
+							linhaDoTempo.setPequisador(new PesquisarPorConcordancia());
+						}
 						break;
-					case "descordancia":
-						linhaDoTempo.getPequisador().addNext(new PesquisarPorDescordancia());
+					case "discordancia":
+						if(linhaDoTempo.getPequisador() != null) {
+							linhaDoTempo.getPequisador().addNext(new PesquisarPorDescordancia());
+						} else {
+							linhaDoTempo.setPequisador(new PesquisarPorDescordancia());
+						}
 						break;
 					default:
 						break;

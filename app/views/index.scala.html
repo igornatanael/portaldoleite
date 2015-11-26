@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
         <title>Tema</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -60,11 +60,14 @@
             			<p>Escolha uma disciplina ou tema ao lado para acessar os leites.</p>
 						<hr class="uk-article-divider">
 						Você pode ordenar sua timeline por:
-						<div class="uk-button-group">
-							<a class="uk-button uk-button-small" href="">Data</a>
-							<a class="uk-button uk-button-small">Discordância</a>
-							<a class="uk-button uk-button-small">Concordância</a>
-						</div>
+						<form class="uk-form" method="post" action=@routes.Application.index()>
+							<div class="uk-form-controls uk-form-controls-text">
+								<label><input type="radio" name="data" value="data">Data</label>
+								<label><input type="radio" name="concordancia" value="concordancia">Concordância</label>
+								<label><input type="radio" name="discordancia" value="discordancia">Discordância</label>
+								<button type="submit" class="uk-button uk-button-small">Ordenar</button>
+							</div>
+						</form>
 						<hr class="uk-article-divider-green">
 
 						<div id="dicasList">
@@ -104,7 +107,7 @@
 								</div>
 								</div>
 								<hr class="uk-article-divider">
-								<!--	MODALAQUI EIN -->
+								<!--	MODAL AQUI HEIN -->
 								<div id="avaliacao-modal-@dica.getId()" class="uk-modal">
 									<div class="uk-modal-dialog">
 										<a class="uk-modal-close uk-close"></a>
