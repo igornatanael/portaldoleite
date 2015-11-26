@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +69,7 @@ public class Application extends Controller {
 			}
 		}
 
-		List<Dica> dicas = linhaDoTempo.getDicas();
+		List<Dica> dicas = linhaDoTempo.getDicas().subList(0,10);
 		List<Disciplina> disciplinas = dao.findAllByClassName(Disciplina.class.getName());
 		return ok(views.html.index.render(disciplinas, dicas));
 	}
