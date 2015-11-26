@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <head>
         <title>Tema</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -113,11 +113,7 @@
 										<a class="uk-modal-close uk-close"></a>
 										<div class="uk-modal-header" style="background-color:#5f5f5f"><h2>Dica para @dica.getTema().getDisciplina().getNome()</h2></div>
 										<div class="uk-article">
-											@if(!dica.wasFlaggedByUser(session.get("login").toString())){
-												<form name="formDenunciar@dica.getId()" method="post" action="/denunciarDica/@dica.getId()"></form>
-												<a data-uk-tooltip title="Denunciar dica"
-												class="uk-text-warning uk-icon-hover uk-icon-flag uk-panel-badge" href="javascript:denunciarDica(@dica.getId())"></a>
-											}
+
 												@if(dica.getTipo().equals("DicaDisciplina")) {
 													<p>Disciplinas importantes:</p><p class="normal-font">@dica.getTexto()</p>
 													<p>Razão:</p><p class="normal-font">@dica.getInstanciaDisciplina.getRazao()</p>
@@ -151,50 +147,35 @@
 												}
 											</div>
 											<div class="uk-width-small-1-3">
-												<span class="normal-font">Discordâncias:</span>
-												<a class="uk-icon-hover uk-icon-comments-o uk-text-success"
-												data-uk-modal="{target:'#dica-discordancias-modal-@dica.getId()'}"></a>
+
+												@if(!dica.wasFlaggedByUser(session.get("login").toString())){
+													<span class="normal-font">Denunciar:</span>
+													<form name="formDenunciar@dica.getId()" method="post" action="/denunciarDica/@dica.getId()"></form>
+													<a data-uk-tooltip title="Denunciar dica" align="center"
+													class=" uk-icon-flag" href="javascript:denunciarDica(@dica.getId())"></a>
+												}
 											</div>
 
-											<hr class="uk-article-divider">
-												<!---------------- MODAL DISCORDÂNCIAS ---------------->
-											<div id="dica-discordancias-modal-@dica.getId()" class="uk-modal">
-												<div class="uk-modal-dialog">
-													<a class="uk-modal-close uk-close"></a>
-													<div class="uk-modal-header" style="background-color:#5f5f5f"><h2>Discordâncias</h2></div>
-													<div class="uk-overflow-container">
-														@if(dica.getUsersCommentaries().entrySet().isEmpty()) {
-															<p>Nenhuma discordância adicionada.</p>
-														}
-														@for(discordancia <- dica.getUsersCommentaries().entrySet()) {
-															<div class="uk-panel uk-panel-box dica">
-																<p class="normal-font">@discordancia.getValue()</p>
-																<p class="uk-article-meta uk-text-right">por @discordancia.getKey()</p>
-															</div>
-															<hr class="uk-article-divider">
-															}
-													</div>
-												</div>
-											</div>
+
+
 												<!---------------- MODAL ADD DISCORDÂNCIA ---------------->
-											<div id="dica-add-discordancia-modal-@dica.getId()" class="uk-modal">
-												<div class="uk-modal-dialog">
-													<a class="uk-modal-close uk-close"></a>
-													<div class="uk-modal-header" style="background-color:#5f5f5f"><h2>Adicionar dica</h2></div>
-													<div class="uk-container uk-container-center">
-														<form class="uk-form center" method="post" action="/addDiscordancia/@dica.getId()">
-															<p>Por que você discorda desta dica?</p>
-															<textarea cols="70" rows="5" name="discordancia" ng-model="discordancia"
-															class="form-control" required>Discordância.</textarea>
+										</div>
+										<hr class="uk-article-divider">
 
-															<div class="uk-modal-footer uk-text-right" style="background-color:#5f5f5f">
-																<button class="uk-button uk-button-primary" type="submit" ng-disabled="!discordancia">Adicionar</button>
-															</div>
-														</form>
-													</div>
+										<div class="uk-panel-box" style="align-content: center">
+											<h3 align="center">Discordâncias</h3>
+												<!---------------- MODAL DISCORDÂNCIAS ---------------->
+											@if(dica.getUsersCommentaries().entrySet().isEmpty()) {
+												<p>Nenhuma discordância adicionada.</p>
+											}
+											@if(!dica.getUsersCommentaries().entrySet().isEmpty()) {	@for(discordancia <- dica.getUsersCommentaries().entrySet()) {
+												<div class="uk-panel uk-panel-box dica">
+													<p class="normal-font">@discordancia.getValue()</p>
+													<p class="uk-article-meta uk-text-right">por @discordancia.getKey()</p>
 												</div>
-											</div>
-												<!---------------- FIM MODAL ---------------->
+												<hr class="uk-article-divider">
+												}
+											}
 										</div>
 										</div>
 									</div>
