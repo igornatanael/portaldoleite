@@ -2413,17 +2413,17 @@ select.uk-form-width-mini {
   color: #ffffff;
 }
 .uk-button-primary {
-  background-color: #1bafd6;
+  background-color: #13955f;
   color: #ffffff;
 }
 .uk-button-primary:hover,
 .uk-button-primary:focus {
-  background-color: #069bcc;
+  background-color: #14ae72;
   color: #ffffff;
 }
 .uk-button-primary:active,
 .uk-button-primary.uk-active {
-  background-color: #0087b3;
+  background-color: rgba(21, 184, 121, 0.82);
   color: #ffffff;
 }
 .uk-button-success {
