@@ -1,0 +1,7 @@
+- Criação de uma hierarquia de pesquisadores da linha do tempo usando padrão strategy como boa prática, diminuindo acomplamento, aumentando a coesão e evitando repetição de código.
+
+- Criação de uma classe TimeLine: necessário para Information Expert do posts na timeline e uso do strategy com o pesquisador
+
+- Dica tem a informação de qual disciplina pertence agora: Information Expert
+
+- Mudanças e simplificações de alguns códigos não-legíveis
