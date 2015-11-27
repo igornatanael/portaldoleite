@@ -159,6 +159,10 @@ public abstract class Dica implements Comparable<Dica> {
 		return dateCreate;
 	}
 
+	public void setDateCreate(Calendar dateCreate) {
+		this.dateCreate = dateCreate;
+	}
+
 	@PrePersist
 	protected void onCreate() {
 		dateCreate = Calendar.getInstance();

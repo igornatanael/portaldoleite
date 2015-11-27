@@ -39,6 +39,10 @@ public class LinhaDoTempo {
         this.id = id;
     }
 
+    public void setDicas(List<Dica> dicas) {
+        this.dicas = dicas;
+    }
+
     public Pesquisador getPequisador() {
         return pequisador;
     }
@@ -48,7 +52,9 @@ public class LinhaDoTempo {
     }
 
     public List<Dica> getDicas() {
-        dicas = dao.findAllByClassName(Dica.class.getName());
+        if(dicas == null) {
+            dicas = dao.findAllByClassName(Dica.class.getName());
+        }
         return pequisador.getDicas(dicas);
     }
 }
